@@ -1,11 +1,13 @@
 package com.redmadrobot.marketplace.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@Accessors(chain = true)
 public class AdvertisementEntity {
     //    Объявление содержит:
     //    название,

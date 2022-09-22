@@ -4,11 +4,11 @@ import com.redmadrobot.marketplace.dto.AuthenticationUserDto;
 import com.redmadrobot.marketplace.dto.RegisterUserDto;
 import com.redmadrobot.marketplace.model.UserEntity;
 import com.redmadrobot.marketplace.repository.UserEntityRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
+@Slf4j
 public class AuthService {
 
     private final UserEntityRepository userEntityRepository;
@@ -23,11 +23,14 @@ public class AuthService {
                 .setPassword(registerUserDto.getPassword())
                 .setRole(registerUserDto.getRole());
         UserEntity saved = userEntityRepository.save(user);
+        log.info("f161b66e AuthService.register method. UserEntity: " + saved);
         return saved != null ? "Success" : "Failed";
     }
 
     public String authentication(AuthenticationUserDto authenticationUserDto) {
         UserEntity saved = userEntityRepository.findByEmail(authenticationUserDto.getEmail());
-        return saved.getPassword().equals(authenticationUserDto.getPassword()) ? "Success" : "Failed";
+        boolean isPasswordCorrect = saved.getPassword().equals(authenticationUserDto.getPassword());
+        log.info("e4ef2abd AuthService.authentication method. Is password correct: " + isPasswordCorrect);
+        return isPasswordCorrect ? "Success" : "Failed";
     }
 }

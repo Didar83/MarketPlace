@@ -36,9 +36,12 @@ public class UserEntity {
     @Column(name = "password_hash", length = 60, nullable = false)
     private String password;
 
-
-    private String status;
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private Status status;
 
     @ManyToOne
     private Role role;
+
+    private String contactInfo;
 }

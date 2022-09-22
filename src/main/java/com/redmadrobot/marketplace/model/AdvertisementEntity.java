@@ -18,17 +18,12 @@ public class AdvertisementEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-
     private String title;
-
     private String description;
-
     private String sellerContact;
-
     @ManyToOne
     @JoinColumn(name = "status_id")
     private Status status;
-
     @Column(name = "image", nullable = false, length = 100000)
     private byte[] image;
 }

@@ -26,10 +26,8 @@ public class ProfileController {
     }
 
     @ApiOperation(value = "Create new Advertisement")
-    @PostMapping("/createAds")
-    public ResponseEntity createAds(@RequestBody AdvertisementDto advertisementDto) {
-        String createNewAdvertisement = profileService.createAds(advertisementDto);
-
-        return createNewAdvertisement.equals("Success") ? ResponseEntity.ok("Success") : ResponseEntity.of(Optional.of("Fail"));
+    @PostMapping("/createAd")
+    public ResponseEntity createAd(@RequestBody AdvertisementDto advertisementDto) {
+        return ResponseEntity.of(profileService.createAd(advertisementDto));
     }
 }

@@ -6,6 +6,7 @@ import com.redmadrobot.marketplace.repository.AdvertisementEntityRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,5 +29,9 @@ public class ProfileService {
         AdvertisementEntity saved = advertisementEntityRepository.save(entity);
         String response = saved != null ? "Success" : "Failed";
         return Optional.of(response);
+    }
+
+    public List<AdvertisementEntity> findAll() {
+        return advertisementEntityRepository.findAll();
     }
 }
